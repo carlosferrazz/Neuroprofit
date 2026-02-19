@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NeuroProfit AI</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="authScreen" class="auth">
+  <h2 id="authTitle">Login</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+  <p style="margin-top:15px;">
+    <span id="toggleText">Não tem conta?</span>
+    <a href="#" onclick="toggleAuth()">Criar conta</a>
+  </p>
+  <p id="authMessage"></p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="app" class="wrapper hidden">
+  <div class="sidebar">
+    <h2>NeuroProfit</h2>
+    <div class="menu-item" onclick="openPage('dashboard')">🏠 Dashboard</div>
+    <div class="menu-item" onclick="openPage('gerador')">✍️ Gerador</div>
+    <div class="menu-item" onclick="openPage('historico')">📊 Histórico</div>
+    <div class="menu-item" onclick="openPage('analytics')">📈 Analytics</div>
+    <div class="menu-item" onclick="openPage('pro')">💎 Plano PRO</div>
+    <div class="menu-item" onclick="openPage('limites')">🧠 Limites</div>
+    <div class="menu-item" onclick="openPage('config')">⚙️ Configurações</div>
+    <button style="margin-top:auto;background:#ef4444;" onclick="logout()">Sair</button>
+  </div>
+
+  <div class="content">
+    <div id="dashboard" class="card">Dashboard</div>
+    <div id="gerador" class="card hidden">Gerador</div>
+    <div id="historico" class="card hidden">Histórico</div>
+    <div id="analytics" class="card hidden">Analytics</div>
+    <div id="pro" class="card hidden">Plano PRO</div>
+    <div id="limites" class="card hidden">Limites</div>
+    <div id="config" class="card hidden">Configurações</div>
+  </div>
+</div>
+
+</body>
+</html>
