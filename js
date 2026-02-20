@@ -1,54 +1,43 @@
-const supabaseClient = supabase.createClient(
-  "SUA_URL_DO_SUPABASE",
-  "SUA_ANON_KEY_DO_SUPABASE"
-);
+let diario = localStorage.getItem("diario") || 0;
+let total = localStorage.getItem("total") || 0;
 
-let isLogin = true;
-
-// Alternar Login/Cadastro
-function toggleAuth(){
-  isLogin = !isLogin;
-  document.getElementById("authTitle").innerText = isLogin ? "Login" : "Criar Conta";
-  document.querySelector("button").innerText = isLogin ? "Entrar" : "Criar Conta";
-  document.getElementById("toggleText").innerText = isLogin ? "Não tem conta?" : "Já tem conta?";
+function login() {
+    window.location.href = "dashboard.html";
 }
 
-// Login / Cadastro
-async function login(){
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const authMessage = document.getElementById("authMessage");
-
-  if(isLogin){
-    const { error } = await supabaseClient.auth.signInWithPassword({email,password});
-    if(error) return authMessage.innerText = error.message;
-  } else {
-    const { error } = await supabaseClient.auth.signUp({email,password});
-    if(error) return authMessage.innerText = error.message;
-  }
-  startApp();
+function logout() {
+    window.location.href = "index.html";
 }
 
-// Inicializar app
-async function startApp(){
-  document.getElementById("authScreen").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
+function somar() {
+    diario = parseInt(diario) + 10;
+    total = parseInt(total) + 10;
+
+    localStorage.setItem("diario", diario);
+    localStorage.setItem("total", total);
+
+    atualizar();
+    salvarHistorico("+10 adicionados");
 }
 
-// Logout
-async function logout(){
-  await supabaseClient.auth.signOut();
-  location.reload();
+function atualizar() {
+    if(document.getElementById("diario"))
+        document.getElementById("diario").innerText = diario;
+    if(document.getElementById("total"))
+        document.getElementById("total").innerText = total;
 }
 
-// Alternar páginas
-function openPage(page){
-  document.querySelectorAll(".content > div").forEach(el=>el.classList.add("hidden"));
-  document.getElementById(page).classList.remove("hidden");
+function gerarRoteiro() {
+    let tema = document.getElementById("roteiro").value;
+    document.getElementById("resultadoRoteiro").innerText =
+        "Roteiro gerado sobre: " + tema + " 🚀";
 }
 
-// Auto-login
-document.addEventListener("DOMContentLoaded", async()=>{
-  const { data:{user} } = await supabaseClient.auth.getUser();
-  if(user) startApp();
-});
+function salvarHistorico(texto) {
+    let historico = document.getElementById("historico");
+    let li = document.createElement("li");
+    li.innerText = texto;
+    historico.appendChild(li);
+}
+
+atualizar();
