@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroProfit - Dashboard</title>
+<link rel="stylesheet" href="CSS/style.css">
+</head>
+<body class="gradient">
+
+<header>
+    <h2>NeuroProfit 🚀</h2>
+    <button class="logout" onclick="logout()">Sair</button>
+</header>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h3>Lucro Diário</h3>
+        <p id="diario">0</p>
+        <button onclick="somar()">+10</button>
+    </div>
+
+    <div class="card">
+        <h3>Total Acumulado</h3>
+        <p id="total">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Gerador de Roteiro</h3>
+        <textarea id="roteiro" placeholder="Digite tema..."></textarea>
+        <button onclick="gerarRoteiro()">Gerar</button>
+        <p id="resultadoRoteiro"></p>
+    </div>
+
+    <div class="card">
+        <h3>Histórico</h3>
+        <ul id="historico"></ul>
+    </div>
+
+    <div class="card">
+        <h3>Analytics</h3>
+        <p>Performance simulada: +23%</p>
+    </div>
+
+    <div class="card pro">
+        <h3>Plano PRO 🔥</h3>
+        <p>Desbloqueie IA ilimitada e relatórios avançados.</p>
+        <button>Fazer Upgrade</button>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
